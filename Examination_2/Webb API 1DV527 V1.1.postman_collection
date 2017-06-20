@@ -1,0 +1,542 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Webb API 1DV527",
+		"_postman_id": "d699e515-527f-79a9-ac5d-ddf4ee754076",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Route to all resources",
+			"request": {
+				"url": "https://localhost:3000/api",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Route to all catch resources",
+			"request": {
+				"url": "https://localhost:3000/api/catch",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Route to all webhook resources",
+			"request": {
+				"url": "https://localhost:3000/api/webhook",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Route to all user resources",
+			"request": {
+				"url": "https://localhost:3000/api/user",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Register a new user",
+			"request": {
+				"url": "https://localhost:3000/api/user",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user",
+							"value": "user",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "pass",
+							"value": "password",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Make this step before auth."
+			},
+			"response": []
+		},
+		{
+			"name": "No input register user",
+			"request": {
+				"url": "https://localhost:3000/api/user",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Test to check wrong input when doing a registration"
+			},
+			"response": []
+		},
+		{
+			"name": "GET all users",
+			"request": {
+				"url": "https://localhost:3000/api/user/listUsers",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Commando to list all users in the API"
+			},
+			"response": []
+		},
+		{
+			"name": "Auth to get a Json web token.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://localhost:3000/api/auth",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user",
+							"value": "user",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "pass",
+							"value": "password",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Auth with username and password to get JsonWebToken. "
+			},
+			"response": []
+		},
+		{
+			"name": "Wrong password when auth",
+			"request": {
+				"url": "https://localhost:3000/api/auth",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user",
+							"value": "user",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "pass",
+							"value": "sdadasd",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Testing what's happening when inputing wrong password"
+			},
+			"response": []
+		},
+		{
+			"name": "Add webhook URL",
+			"request": {
+				"url": "https://localhost:3000/api/webhook",
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "url",
+							"value": "http://www.example.com/hook",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Create webhook url for further POST:s"
+			},
+			"response": []
+		},
+		{
+			"name": "No input webhook url",
+			"request": {
+				"url": "https://localhost:3000/api/webhook",
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "url",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Testing when there is not input on url"
+			},
+			"response": []
+		},
+		{
+			"name": "GET all webhooks",
+			"request": {
+				"url": "https://localhost:3000/api/webhook/listWebhooks",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Listing all webhhoooks registered in the API"
+			},
+			"response": []
+		},
+		{
+			"name": "POST to create a new catch",
+			"request": {
+				"url": "https://localhost:3000/api/catch",
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "perch",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "user",
+							"value": "user",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "posx",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "posy",
+							"value": "2",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "species",
+							"value": "perch",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "weight",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "length",
+							"value": "12",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "imageurl",
+							"value": "http://www.example.com/perch.jpg",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "other",
+							"value": "big fish",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "text",
+							"value": "nice",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Post with correct details."
+			},
+			"response": []
+		},
+		{
+			"name": "No input on some fields when trying to add new catch",
+			"request": {
+				"url": "https://localhost:3000/api/catch",
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "pike",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "user",
+							"value": "per",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "posx",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "posy",
+							"value": "2",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "species",
+							"value": "pike",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "testing validation for fields"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT on a existing catch",
+			"request": {
+				"url": "https://localhost:3000/api/catch/perch",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "species",
+							"value": "trout",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Put request, change just username to another"
+			},
+			"response": []
+		},
+		{
+			"name": "Wrong token to see which error message",
+			"request": {
+				"url": "https://localhost:3000/api/catch/perch",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "sdadasdasd",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET a single catch by id(name)",
+			"request": {
+				"url": "https://localhost:3000/api/catch/perch",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "A get request to get a single resource(catch)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test getting a single catch that doesn't exist",
+			"request": {
+				"url": "https://localhost:3000/api/catch/sdasda",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Testing the error message when trying to get a catch that doesn't exist."
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a catch, make sure to add one first.",
+			"request": {
+				"url": "https://localhost:3000/api/catch/perch",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Delete a catch with unique name"
+			},
+			"response": []
+		},
+		{
+			"name": "Trying to delete a catch that doesn't exist",
+			"request": {
+				"url": "https://localhost:3000/api/catch/p",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Testing error message"
+			},
+			"response": []
+		},
+		{
+			"name": "GET all catches",
+			"request": {
+				"url": "https://localhost:3000/api/catch/listCatches",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "get all catches"
+			},
+			"response": []
+		}
+	]
+}

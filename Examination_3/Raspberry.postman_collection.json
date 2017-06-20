@@ -1,0 +1,184 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Raspberry",
+		"_postman_id": "eb18a7e2-4be6-0c24-095c-601771b83e21",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication with wrong password",
+			"request": {
+				"url": "https://dv-rpi3.lnu.se:20443/pi/resources/auth",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "pass",
+							"value": "thisisnotthepass",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "This will tell the user that the password is wrong"
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate with correct password",
+			"request": {
+				"url": "https://dv-rpi3.lnu.se:20443/pi/resources/auth",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "pass",
+							"value": "thisisthepass",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "You will get a token when the correct password is entered."
+			},
+			"response": []
+		},
+		{
+			"name": "Light up the red LED",
+			"request": {
+				"url": "https://dv-rpi3.lnu.se:20443/pi/resources/links/actions/resources/ledState",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXN0IjoidGhpc2lzdGhlcGFzcyIsImlhdCI6MTQ4OTc2OTk5NSwiZXhwIjoxNDg5NzcxNDM1fQ.piIxCSB4T4Sowa3-_-UTiiFAa5rwWxBITrSQLLPcyVA",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ledId\":\"1\",\n\t\"state\":true\n}"
+				},
+				"description": "Lights the red LED. Remember that you will need a valid token in order to do this."
+			},
+			"response": []
+		},
+		{
+			"name": "Light up the green LED",
+			"request": {
+				"url": "https://dv-rpi3.lnu.se:20443/pi/resources/links/actions/resources/ledState",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXN0IjoidGhpc2lzdGhlcGFzcyIsImlhdCI6MTQ4OTc2OTk5NSwiZXhwIjoxNDg5NzcxNDM1fQ.piIxCSB4T4Sowa3-_-UTiiFAa5rwWxBITrSQLLPcyVA",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ledId\":\"2\",\n\t\"state\":true\n}"
+				},
+				"description": "Lights the green LED. Remember that you will need a valid token in order to do this."
+			},
+			"response": []
+		},
+		{
+			"name": "No token provided",
+			"request": {
+				"url": "https://dv-rpi3.lnu.se:20443/pi/resources/links/actions/resources/ledState",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "x-access-token",
+						"value": "",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ledId\":\"2\",\n\t\"state\":true\n}"
+				},
+				"description": "This will show that you can not access this when no token is provided."
+			},
+			"response": []
+		},
+		{
+			"name": "Get the button",
+			"request": {
+				"url": "https://dv-rpi3.lnu.se:20443/pi/resources/links/properties/resources/button",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Gets the button and its state."
+			},
+			"response": []
+		},
+		{
+			"name": "Get everything",
+			"request": {
+				"url": "https://dv-rpi3.lnu.se:20443/pi/resources/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Gets all of the information available"
+			},
+			"response": []
+		},
+		{
+			"name": "Get the LEDs",
+			"request": {
+				"url": "https://dv-rpi3.lnu.se:20443/pi/resources/links/properties/resources/leds/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Gets all of the LEDs"
+			},
+			"response": []
+		},
+		{
+			"name": "Get the Infrared sensor (PIR)",
+			"request": {
+				"url": "https://dv-rpi3.lnu.se:20443/pi/resources/links/properties/resources/pir",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "When the sensor is activated the state will be true."
+			},
+			"response": []
+		}
+	]
+}

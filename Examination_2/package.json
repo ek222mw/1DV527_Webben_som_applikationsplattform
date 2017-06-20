@@ -1,0 +1,38 @@
+{
+  "name": "ek222mw-examination-2",
+  "version": "1.0.0",
+  "description": "web API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1dv527/ek222mw-examination-2.git"
+  },
+  "keywords": [
+    "web",
+    "api",
+    "RESTful",
+    "API"
+  ],
+  "author": "Emil Karlsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1dv527/ek222mw-examination-2/issues"
+  },
+  "homepage": "https://github.com/1dv527/ek222mw-examination-2#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "express-handlebars": "^3.0.0",
+    "https": "^1.0.0",
+    "jsonwebtoken": "^7.2.1",
+    "mongoose": "^4.8.1",
+    "node-webhooks": "^1.1.31",
+    "path": "^0.12.7",
+    "xss": "^0.3.3"
+  }
+}

@@ -1,0 +1,24 @@
+{
+   "catch1" : {
+      "user" : "Emil",
+      "position" : {"X":"1","Y":"2"},
+      "species" : "pike",
+      "weight": "1kg",
+      "length": "30cm",
+      "imageURL":"google.com",
+      "timestamp":"123123123",
+      "other": "nice fish",
+      "text": "a nice fish caught"
+   },
+   "catch2" : {
+      "user" : "Roger",
+      "position" : {"X":"2","Y":"3"},
+      "species" : "perch",
+      "weight": "2kg",
+      "length": "30cm",
+      "imageURL":"msn.com",
+      "timestamp":"1231231235555",
+      "other": "Realy nice fish",
+      "text": "Personal best"
+   }
+}

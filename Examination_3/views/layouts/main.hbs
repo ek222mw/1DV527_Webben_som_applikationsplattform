@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Snippet App</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body class="theme">
+  {{{ body }}}
+
+
+<script src='/socket.io/socket.io.js'></script>
+  <script>
+      // Auto discovery of the websocket server
+      var socket = io();
+
+      socket.on('alarm', function(data)
+      {
+
+        var div = document.getElementById( 'led' );
+        if(data.d) {
+           console.log(data.d);
+          div.style.backgroundColor = 'green';
+        } else {
+          div.style.backgroundColor = 'red';
+        }
+
+
+          //addMessage(data.data);
+      });
+
+      function addMessage(message, data) {
+          var text = document.createTextNode(message),
+              el = document.createElement('li'),
+              messages = document.getElementById('messages');
+          el.appendChild(text);
+          messages.appendChild(el);
+      }
+      var button = document.getElementById("alarm");
+      var input = document.getElementById("password");
+      button.addEventListener("click", function() {
+
+        socket.emit("AlarmButt", {password: input.value});
+      });
+  </script>
+</body>
+</html>

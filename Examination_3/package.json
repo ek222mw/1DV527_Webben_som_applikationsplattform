@@ -1,0 +1,38 @@
+{
+  "name": "project-group-D",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1dv527/project-group-D.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1dv527/project-group-D/issues"
+  },
+  "homepage": "https://github.com/1dv527/project-group-D#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "cors": "^2.8.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.14.1",
+    "express-handlebars": "^3.0.0",
+    "https": "^1.0.0",
+    "jsonwebtoken": "^7.3.0",
+    "msgpack5": "^3.4.1",
+    "node-json2html": "^1.1.1",
+    "path": "^0.12.7",
+    "request": "^2.79.0",
+    "socket.io": "^1.7.3",
+    "watchjs": "0.0.0"
+  },
+  "optionalDependencies": {
+    "onoff": "^1.0.4"
+  }
+}

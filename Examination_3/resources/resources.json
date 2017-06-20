@@ -1,0 +1,136 @@
+{
+  "name": "Alarm WoT Raspberry PI",
+  "description": "A simple WoT-connected Raspberry PI for alarm",
+  "manufacturer" : "Raspberry Pi",
+  "tags": [
+    "raspberry",
+    "pi",
+    "WoT"
+  ],
+  "hrefs":{"self":"/pi/resources", "customFields":"/pi/resources/customFields","links":"/pi/resources/links"},
+  "customFields" : {
+    "hostname":"lnu",
+    "port": 20443,
+    "secure": false,
+    "dataArraySize" : 30
+  },
+  "links": {
+    "hrefs":{"self":"/pi/resources/links", "prev":"/pi/resources"},
+    "product": {
+      "link": "https://www.raspberrypi.org/products/raspberry-pi-3-model-b/",
+      "title": "Product this Web Thing is based on"
+    },
+    "properties": {
+      "links": {"self":"/pi/resources/links/properties","resources":"/pi/resources/links/properties/resources","actions":"/pi/resources/links/properties/actions", "prev":"/pi/resources/links"},
+      "title": "List of Properties",
+      "resources": {
+        "links": {"self":"/pi/resources/links/properties/resources", "pir":"/pi/resources/links/properties/resources/pir",
+          "leds":"/pi/resources/links/properties/resources/leds", "button":"/pi/resources/links/properties/resources/button",
+          "prev":"/pi/resources/links/properties"},
+          "pir": {
+            "links": {"self":"/pi/resources/links/properties/resources/pir", "prev":"/pi/resources/links/properties/resources"},
+            "name": "Passive Infrared",
+            "description": "A passive infrared sensor.",
+            "values": {
+              "presence": {
+                "name": "Presence",
+                "description": "Current sensor value (true=motion detected)",
+                "type": "boolean",
+                "customFields": {
+                  "gpio": 17
+                },
+                "state":false
+              }
+            },
+            "tags": [
+              "sensor",
+              "public"
+            ]
+          },
+          "leds": {
+            "links":{"self":"/pi/resources/links/properties/resources/leds", "prev":"/pi/resources/links/properties/resources"},
+            "name": "LEDs",
+            "description": "The LEDs of this device.",
+            "values": {
+              "1": {
+                "name": "LED 1 - Red",
+                "customFields": {
+                  "gpio": 22
+                },
+                "state": false
+              },
+              "2": {
+                "name": "LED 2 - Green",
+                "customFields": {
+                  "gpio": 10
+                },
+                "state": true
+              }
+            },
+            "tags": [
+              "sensor",
+              "public"
+            ]
+          },
+          "button": {
+            "links":{"self":"/pi/resources/links/properties/resources/button", "prev":"/pi/resources/links/properties/resources"},
+            "name": "Button",
+            "description": "Button to deactivate alarm",
+            "values": {
+              "presence": {
+                "name": "Presence",
+                "description": "Current sensor value (false=button pressed)",
+                "type": "boolean",
+                "customFields": {
+                  "gpio": 27
+                },
+                "state":true
+              }
+            },
+            "tags": [
+              "sensor",
+              "public"
+            ]
+          }
+        }
+      },
+      "actions": {
+        "links": {"self":"/pi/resources/links/actions", "resources":"/pi/resources/links/actions/resources", "prev":"/pi/resources/links/"},
+        "title": "Actions of this Web Thing",
+        "resources": {
+          "links":{"self":"/pi/resources/links/actions/resources", "ledState":"/pi/resources/links/actions/resources/ledState", "prev":"/pi/resources/links/actions"},
+          "ledState": {
+            "links":{"self":"/pi/resources/links/actions/resources/ledState", "values":"/pi/resources/links/actions/resources/ledState/values", "prev":"/pi/resources/links/actions/resources"},
+            "name": "Change LED state",
+            "description": "Change the state of an LED",
+            "values": {
+              "links":{"self":"/pi/resources/links/actions/resources/ledState/values", "ledId":"/pi/resources/links/actions/resources/ledState/values/ledId", "state":"/pi/resources/links/actions/resources/ledState/values/state","prev":"/pi/resources/links/properties/actions/resources/ledState"},
+              "ledId": {
+                "links":{"self":"/pi/resources/links/actions/resources/ledState/values/ledId", "prev":"/pi/resources/links/actions/resources/ledState/values"},
+                "type": "enum",
+                "enum":{"1":"LED 1","2":"LED 2","ALL":"All LEDs"},
+                "required": true
+              },
+              "state": {
+                "links":{"self":"/pi/resources/links/actions/resources/ledState/values/state", "prev":"/pi/resources/links/actions/resources/ledState/values"},
+                "type": "boolean",
+                "required" : true
+              }
+            }
+          }
+        }
+      },
+      "type": {
+        "link": "http://model.webofthings.org/WebThing",
+        "title": "Instance type of the Pi"
+      },
+      "help": {
+        "link": "http://webofthings.org/docs/pi/",
+        "title": "Documentation"
+      },
+      "ui": {
+        "link": "/pi/resources/ui",
+        "title": "User Interface"
+      }
+    }
+  }
